@@ -1,0 +1,75 @@
+
+
+Griselda Pérez Velázquez
+
+
+- *Primer reto*
+
+reated on Fri Jun 25 16:33:22 2021
+
+@author: grise
+"""
+import requests
+from bs4 import BeautifulSoup
+
+URL = 'https://api.stackexchange.com/2.2/search?order=desc&sort=activity&intitle=perl&site=stackoverflow'
+page = requests.get(URL)
+soup = BeautifulSoup(page.content, 'html.parser')
+
+
+#2. Obtener el número de respuestas contestadas y no contestadas
+
+results = soup.find('is_answered')
+if results is True:
+        i=0+1;
+        count=i;
+        
+
+results2 = soup.find('answer_count')
+
+#3. Obtener la respuesta con mayor owners
+results3 = soup.find('owner')
+
+#4. Obtener la respuesta con menor número de vistas
+results4 = soup.find('view_count')
+
+#5. Obtener la respuesta más vieja y más actual
+results5 = soup.find('last_activity_date')
+
+results5a = soup.find('last_edit_date')
+
+#1. Imprimir en consola del punto 2 al 5
+
+
+
+
+-*Segundo reto*
+
+1. ¿Cuál es el nombre aeropuerto que ha tenido mayor movimiento durante el año?
+
+SELECT * FROM Tabla de vuelos 
+WHERE id_movimiento > 0
+ORDER BY id_movimiento desc;
+
+
+1. ¿Cuál es el nombre aerolínea que ha realizado mayor número de vuelos 
+durante el año?
+
+SELECT Id_aerolinea
+FROM Tabla de aerolíneas 
+INNER JOIN Tabla de vuelos
+ON Tabla de aerolíneas.id_aerolinea=Tabla de vuelos.id_aerolinea;
+ORDER BY Tabla de vuelos.id_aerolinea desc;
+
+1. ¿En qué día se han tenido mayor número de vuelos?
+
+SELECT * FROM Tabla de vuelos
+WHERE id_movimiento > 0
+ORDER BY id_movimiento;
+
+
+1. ¿Cuáles son las aerolíneas que tienen mas de 2 vuelos por día?
+
+SELECT * FROM Tabla de vuelos
+WHERE id_movimiento >= 2
+ORDER BY id_movimiento;
